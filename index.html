@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinTrack - Expense Tracker</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">₹</div>
+        <span>FinTrack</span>
+      </div>
+
+      <nav>
+        <a href="#dashboard" class="active">⌂ <span>Dashboard</span></a>
+        <a href="#transactions">↔ <span>Transactions</span></a>
+        <a href="#analytics">◔ <span>Analytics</span></a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button id="themeBtn">☀️ <span>Toggle Theme</span></button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+      <!-- Header -->
+      <header class="topbar">
+        <div>
+          <p class="small-text">Personal Finance</p>
+          <h1>Good afternoon 👋</h1>
+        </div>
+
+        <div class="profile">
+          <div class="avatar">V</div>
+          <div>
+            <strong>My Wallet</strong>
+            <small>Personal Account</small>
+          </div>
+        </div>
+      </header>
+
+      <!-- Balance Cards -->
+      <section class="cards">
+
+        <div class="card balance-card">
+          <div class="card-top">
+            <span>Total Balance</span>
+            <div class="card-icon">₹</div>
+          </div>
+          <h2 id="balance">₹0</h2>
+          <p class="positive">Available balance</p>
+        </div>
+
+        <div class="card income-card">
+          <div class="card-top">
+            <span>Total Income</span>
+            <div class="card-icon">↗</div>
+          </div>
+          <h2 id="income">₹0</h2>
+          <p class="positive">Money received</p>
+        </div>
+
+        <div class="card expense-card">
+          <div class="card-top">
+            <span>Total Expenses</span>
+            <div class="card-icon">↘</div>
+          </div>
+          <h2 id="expense">₹0</h2>
+          <p class="negative">Money spent</p>
+        </div>
+
+      </section>
+
+      <!-- Content Grid -->
+      <section class="dashboard-grid">
+
+        <!-- Chart -->
+        <div class="panel chart-panel" id="analytics">
+          <div class="panel-header">
+            <div>
+              <p class="small-text">Analytics</p>
+              <h3>Spending Overview</h3>
+            </div>
+          </div>
+
+          <canvas id="expenseChart"></canvas>
+        </div>
+
+        <!-- Add Transaction -->
+        <div class="panel" id="transactions">
+
+          <div class="panel-header">
+            <div>
+              <p class="small-text">Finance</p>
+              <h3>Add Transaction</h3>
+            </div>
+          </div>
+
+          <form id="transactionForm">
+
+            <label>Transaction Type</label>
+
+            <div class="type-buttons">
+              <button type="button" class="type-btn active" data-type="expense">
+                💸 Expense
+              </button>
+
+              <button type="button" class="type-btn" data-type="income">
+                💰 Income
+              </button>
+            </div>
+
+            <label>Amount</label>
+            <div class="input-box">
+              <span>₹</span>
+              <input type="number" id="amount" placeholder="Enter amount" required>
+            </div>
+
+            <label>Description</label>
+            <input type="text" id="description" placeholder="e.g. Lunch, Salary..." required>
+
+            <label>Category</label>
+
+            <select id="category">
+              <option value="Food">🍔 Food</option>
+              <option value="Travel">🚌 Travel</option>
+              <option value="Shopping">🛍️ Shopping</option>
+              <option value="Bills">💡 Bills</option>
+              <option value="Education">📚 Education</option>
+              <option value="Entertainment">🎬 Entertainment</option>
+              <option value="Other">📦 Other</option>
+            </select>
+
+            <label>Date</label>
+            <input type="date" id="date" required>
+
+            <button class="add-btn" type="submit">
+              + Add Transaction
+            </button>
+
+          </form>
+        </div>
+
+      </section>
+
+      <!-- Transactions -->
+      <section class="panel transactions-panel">
+
+        <div class="panel-header transaction-heading">
+          <div>
+            <p class="small-text">Activity</p>
+            <h3>Recent Transactions</h3>
+          </div>
+
+          <input type="text" id="search" placeholder="🔍 Search...">
+        </div>
+
+        <div id="transactionList" class="transaction-list">
+          <div class="empty">
+            <div>💸</div>
+            <p>No transactions yet</p>
+            <small>Add your first transaction above.</small>
+          </div>
+        </div>
+
+      </section>
+
+      <footer>
+        <p>FinTrack • Personal Expense Tracker</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <div id="toast" class="toast">
+    Transaction added successfully ✓
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
